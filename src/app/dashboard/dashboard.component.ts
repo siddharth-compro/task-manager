@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TaskService} from '../task.service';
 import { Task } from '../task';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +11,15 @@ import { Task } from '../task';
 export class DashboardComponent implements OnInit {
 
   tasks: Task[] = [];
-  constructor(private taskService: TaskService) { }
+  showLoading: Boolean = false;
+  constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit(): void {
+    this.showLoading = true;
     this.taskService.getTasks()
       .subscribe(data => {
         this.tasks = data
+        this.showLoading = false;
       })
   }
 
@@ -27,6 +31,10 @@ export class DashboardComponent implements OnInit {
       })
     } else {
     }
+  }
+
+  editTask(_id: String): void {
+    this.router.navigateByUrl('/task/edit/'+ _id)
   }
 
 }

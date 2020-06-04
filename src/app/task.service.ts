@@ -15,7 +15,18 @@ export class TaskService {
   }
 
   deleteTask(_id: String): Observable<object> {
-    debugger
     return this.http.delete(this.ROOT_URL + "todos/" + _id)
+  }
+
+  addTask(_task: Task): Observable<object> {
+    return this.http.post(this.ROOT_URL + "todos", _task);
+  }
+
+  getTask(_id: String): Observable<Task> {
+    return this.http.get<Task>(this.ROOT_URL + "todos/" + _id)
+  }
+
+  putTask(_task: Task): Observable<object> {
+    return this.http.put(this.ROOT_URL + "todos/" + _task._id, _task)
   }
 }

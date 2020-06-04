@@ -1,0 +1,57 @@
+<div *ngIf="showLoading" class="display-4">Loading...</div>
+<div *ngIf="!showLoading" class="m-1 mt-5">
+	<div>
+		<span class="glyphicon glyphicon-arrow-left lg" aria-hidden="true" (click)="goBack()"></span>
+		<span> Go back</span>
+	</div>
+	<h1>Add a Task</h1>
+	<form #taskForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+		<div class="form-group">
+			<input type="text"
+				hidden
+				#_id="ngModel"
+				class="form-control"
+				id="_id" 
+				aria-describedby="_id" 
+				[(ngModel)]="task._id"
+				name="_id"
+			>
+		</div>
+		<div class="form-group">
+			<label for="title">Title</label>
+			<input type="text"
+				required
+				#title="ngModel"
+				[class.is-invalid]="title.invalid && title.touched" 
+				class="form-control"
+				id="title" 
+				aria-describedby="title" 
+				placeholder="Enter Title" 
+				[(ngModel)]="task.title"
+				name="title"
+			>
+			<small class="text-danger" [class.d-none]="title.valid || title.untouched">Title is required</small>
+		</div>
+		<div class="form-group">
+			<label for="description">Description</label>
+			<input type="text" 
+				required 
+				#description="ngModel"
+				class="form-control"
+				[class.is-invalid]="description.invalid && description.touched"
+				id="description"
+				placeholder="Enter Description"
+				[(ngModel)]="task.description"
+				name="description"
+			>
+			<small class="text-danger" [class.d-none]="description.valid || description.untouched">Description is required</small>
+		</div>
+		<div class="form-group form-check">
+			<input type="checkbox" class="form-check-input" id="completed" name="completed" [(ngModel)]="task.completed">
+			<label class="form-check-label" for="completed">Completed</label>
+		</div>
+		<div class="">
+			<button [disabled]="taskForm.form.invalid" type="submit" class="btn btn-success">Submit</button>
+		</div>
+	</form>
+</div>

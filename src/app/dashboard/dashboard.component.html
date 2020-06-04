@@ -1,6 +1,13 @@
-<div>
-  <div class="row m-1 mt-5 flex-row-reverse ">
-    <button type="button" class="btn btn-success btn-lg">+Add Task</button>
+<div *ngIf="showLoading" class="display-4">Loading...</div>
+<div *ngIf="!showLoading">  
+  <div>
+    <h1>TASKS</h1>
+    <hr>
+  </div>
+  <div class="row m-1 mt-5 mb-5 flex-row-reverse">
+    <a routerLink="/task/new">
+      <button type="button" class="btn btn-success btn-lg">+Add Task</button>
+    </a>
   </div>
   <div class="row">
     <div *ngFor="let task of tasks" class="col-sm-12 col-lg-4 col-md-6">
@@ -25,7 +32,7 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;
+              <span class="glyphicon glyphicon-edit" aria-hidden="true" (click)="editTask(task._id)"></span>&nbsp;
               <span class="glyphicon glyphicon-trash" aria-hidden="true" (click)="deleteTask(task._id)"></span>
             </div>
           </div>
