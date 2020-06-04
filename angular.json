@@ -94,7 +94,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           }
         },
         "lint": {
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "task-manager"
+    }
+  },
+  "defaultProject": "task-manager",
+  "cli": {
+    "analytics": false
+  }
 }
