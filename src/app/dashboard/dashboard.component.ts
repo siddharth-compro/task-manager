@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TaskService} from '../task.service';
 import { Task } from '../task';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,19 +12,29 @@ export class DashboardComponent implements OnInit {
 
   tasks: Task[] = [];
   showLoading: Boolean = false;
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private taskService: TaskService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.showLoading = true;
-    this.getTasks();
+    // this.showLoading = true;
+    // this.getTasks();
+    this.activatedRoute.data.subscribe((data) => {
+      this.tasks = data.tasks;
+      this.showLoading = false;
+    })
   }
 
   getTasks(): void {
-    this.taskService.getTasks()
-      .subscribe(data => {
-        this.tasks = data
-        this.showLoading = false;
-      })
+    this.activatedRoute.data.subscribe((data) => {
+      this.tasks = data.tasks;
+      this.showLoading = false;
+    })
+    // this.taskService.getTasks()
+    //   .subscribe(data => {
+    //     this.tasks = data
+    //     this.showLoading = false;
+    //   })
+
+
   }
 
   deleteTask(_id: String): void {
