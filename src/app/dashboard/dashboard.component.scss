@@ -4,3 +4,10 @@
 .glyphicon-trash, .glyphicon-edit {
     cursor: pointer;
 }
+.wrap-word {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+//     word-wrap: break-word;
+}

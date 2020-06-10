@@ -6,7 +6,7 @@
   </div>
   <div class="row m-1 mt-5 mb-5 flex-row-reverse">
     <a routerLink="/task/new">
-      <button type="button" class="btn btn-success btn-lg">+Add Task</button>
+      <button type="button" class="btn btn-success btn-lg">+ Add Task</button>
     </a>
   </div>
   <div class="row">
@@ -26,14 +26,18 @@
         </div>
         <div class="col-sm-12 col-lg-9">          
           <div class="row">
-            <div class="col-12">{{task.title}}</div>
-            <div class="col-12">{{task.description}}</div>
-            <div class="col-12">Subtasks: {{task.subtask.length}}</div>
+            <div class="col-12 wrap-word">{{task.title}}</div>
+            <div class="col-12 wrap-word">{{task.description}}</div>
+            <div class="col-12 wrap-word">Subtasks: {{task.subtask.length}}</div>
           </div>
           <div class="row">
             <div class="col-12">
-              <span class="glyphicon glyphicon-edit" aria-hidden="true" (click)="editTask(task._id)"></span>&nbsp;
-              <span class="glyphicon glyphicon-trash" aria-hidden="true" (click)="deleteTask(task._id)"></span>
+              <span class="glyphicon glyphicon-edit"
+                title="Edit"
+                aria-hidden="true" (click)="editTask(task._id)"></span>&nbsp;
+              <span class="glyphicon glyphicon-trash"
+                title="Delete"
+                aria-hidden="true" (click)="deleteTask(task._id)"></span>
             </div>
           </div>
         </div>

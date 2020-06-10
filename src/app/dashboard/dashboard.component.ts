@@ -16,6 +16,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.showLoading = true;
+    this.getTasks();
+  }
+
+  getTasks(): void {
     this.taskService.getTasks()
       .subscribe(data => {
         this.tasks = data
@@ -25,9 +29,10 @@ export class DashboardComponent implements OnInit {
 
   deleteTask(_id: String): void {
     if (window.confirm("Please confirm?")) {
+      this.showLoading = true;
       this.taskService.deleteTask(_id)
       .subscribe(data => {
-        this.ngOnInit();
+        this.getTasks();
       })
     } else {
     }

@@ -1,7 +1,7 @@
 <div *ngIf="showLoading" class="display-4">Loading...</div>
 <div *ngIf="!showLoading" class="m-1 mt-5">
-	<div>
-		<span class="glyphicon glyphicon-arrow-left lg" aria-hidden="true" (click)="goBack()"></span>
+	<div class="back" (click)="goBack()">
+		<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 		<span> Go back</span>
 	</div>
 	<h1>Add a Task</h1>
@@ -47,7 +47,7 @@
 			<small class="text-danger" [class.d-none]="description.valid || description.untouched">Description is required</small>
 		</div>
 		<div class="form-group form-check">
-			<input type="checkbox" class="form-check-input" id="completed" name="completed" [(ngModel)]="task.completed">
+			<input type="checkbox" class="form-check-input" id="completed" name="completed" [(ngModel)]="task.completed">&nbsp;
 			<label class="form-check-label" for="completed">Completed</label>
 		</div>
 		<div class="">
