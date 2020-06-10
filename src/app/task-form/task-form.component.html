@@ -34,7 +34,8 @@
 		</div>
 		<div class="form-group">
 			<label for="description">Description</label>
-			<input type="text" 
+			<textarea 
+				rows="7"
 				required 
 				#description="ngModel"
 				class="form-control"
@@ -43,7 +44,7 @@
 				placeholder="Enter Description"
 				[(ngModel)]="task.description"
 				name="description"
-			>
+			></textarea>
 			<small class="text-danger" [class.d-none]="description.valid || description.untouched">Description is required</small>
 		</div>
 		<div class="form-group form-check">
