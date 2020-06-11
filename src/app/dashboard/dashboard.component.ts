@@ -15,8 +15,6 @@ export class DashboardComponent implements OnInit {
   constructor(private taskService: TaskService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.showLoading = true;
-    // this.getTasks();
     this.activatedRoute.data.subscribe((data) => {
       this.tasks = data.tasks;
       this.showLoading = false;
@@ -24,15 +22,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getTasks(): void {
-    this.activatedRoute.data.subscribe((data) => {
-      this.tasks = data.tasks;
-      this.showLoading = false;
-    })
-    // this.taskService.getTasks()
-    //   .subscribe(data => {
-    //     this.tasks = data
-    //     this.showLoading = false;
-    //   })
+    this.taskService.getTasks()
+      .subscribe(data => {
+        this.tasks = data;
+        this.showLoading = false;
+      })
 
 
   }

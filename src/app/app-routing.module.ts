@@ -8,7 +8,7 @@ import { TaskResolverService } from './task-resolver.service';
 
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: DashboardComponent, resolve: {tasks: TaskResolverService} },
   { path: 'dashboard', component: DashboardComponent, resolve: {tasks: TaskResolverService} },
   { path: 'tasks/:id', component: TaskDetailComponent },
   { path: 'task/new' , component: TaskFormComponent },
