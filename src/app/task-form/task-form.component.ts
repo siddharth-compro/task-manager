@@ -66,4 +66,11 @@ export class TaskFormComponent implements OnInit {
         }
       )
   }
+
+  get is_disabled() {
+    return !(
+      this.task.title.trim().length > 0 &&
+      this.task.description.trim().length > 0
+    )
+  }
 }
