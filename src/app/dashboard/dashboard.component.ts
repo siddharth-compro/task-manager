@@ -12,15 +12,17 @@ export class DashboardComponent implements OnInit {
 
   tasks: Task[] = [];
   showLoading: Boolean = false;
+  pageNo = 1;
+  size = 9;
   constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit(): void {
     this.showLoading = true;
-    this.getTasks();
+    this.getTasks(this.pageNo, this.size);
   }
 
-  getTasks(): void {
-    this.taskService.getTasks()
+  getTasks(pageNo, size): void {
+    this.taskService.getTasks(pageNo, size)
       .subscribe(data => {
         this.tasks = data
         this.showLoading = false;
@@ -32,7 +34,7 @@ export class DashboardComponent implements OnInit {
       this.showLoading = true;
       this.taskService.deleteTask(_id)
       .subscribe(data => {
-        this.getTasks();
+        this.getTasks(1, this.size);
       })
     } else {
     }
@@ -42,4 +44,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/task/edit/'+ _id)
   }
 
+  loadmore() {
+    //load 3 more result 
+    this.pageNo = this.pageNo + 1
+    this.taskService.getTasks(this.pageNo, this.size)
+    .subscribe(data => {
+      this.tasks = this.tasks.concat(data);
+    })
+  }
 }

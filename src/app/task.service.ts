@@ -10,8 +10,8 @@ export class TaskService {
   private ROOT_URL = 'https://thawing-bayou-62614.herokuapp.com/'
   constructor(private http: HttpClient) { }
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.ROOT_URL+'todos');
+  getTasks(pageNo, size): Observable<Task[]> {
+    return this.http.get<Task[]>(this.ROOT_URL+'todos?pageNo=' + pageNo + '&size=' + size);
   }
 
   deleteTask(_id: String): Observable<object> {
